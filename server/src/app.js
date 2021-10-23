@@ -13,6 +13,8 @@ const { authLimiter } = require('./middlewares/rateLimiter');
 const routes = require('./routes/v1');
 const { errorConverter, errorHandler } = require('./middlewares/error');
 const ApiError = require('./utils/ApiError');
+const expsession = require('express-session');
+const { sessionMiddleware, sessionCounter } = require('./middlewares/session');
 
 const app = express();
 
@@ -40,6 +42,11 @@ app.use(compression());
 // enable cors
 app.use(cors());
 app.options('*', cors());
+
+// hook up session for express routes
+app.use(sessionMiddleware);
+// hook up session counter
+app.use(sessionCounter);
 
 // jwt authentication
 app.use(passport.initialize());

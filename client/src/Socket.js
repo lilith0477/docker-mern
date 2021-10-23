@@ -7,13 +7,19 @@ const Socket = () => {
     useEffect(() => {
         const socketInstance = io('http://localhost:3000', {
             transports: ['websocket', 'polling', 'flashsocket'],
-            auth: { token: "localStorage.getItem('token')" }
+            // auth: { token: "localStorage.getItem('token')" }
         })
         setsocket(socketInstance)
     }, [])
 
     useEffect(() => {
-        if (Object.keys(socket).length !== 0) socket.emit('join', "Hello form react app")
+        if (Object.keys(socket).length !== 0) {
+            socket.emit('join', "Hello form react app!!!")
+            socket.on('joinNotif', (data) => {
+                console.log(data)
+            })
+
+        } 
     }, [socket])
 
     useEffect(() => {

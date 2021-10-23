@@ -9,6 +9,7 @@ const envVarsSchema = Joi.object()
     NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
     PORT: Joi.number().default(3000),
     MONGODB_URL: Joi.string().required().description('Mongo DB url'),
+    SESSION_SECRET: Joi.string().required().description('Session secret key'),
     JWT_SECRET: Joi.string().required().description('JWT secret key'),
     JWT_ACCESS_EXPIRATION_MINUTES: Joi.number().default(30).description('minutes after which access tokens expire'),
     JWT_REFRESH_EXPIRATION_DAYS: Joi.number().default(30).description('days after which refresh tokens expire'),
@@ -42,6 +43,9 @@ module.exports = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     },
+  },
+  session: {
+    secret: envVars.SESSION_SECRET,
   },
   jwt: {
     secret: envVars.JWT_SECRET,
