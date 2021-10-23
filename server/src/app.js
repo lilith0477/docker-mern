@@ -1,5 +1,3 @@
-const socketIO = require('socket.io');
-const http = require('http');
 const express = require('express');
 const helmet = require('helmet');
 const xss = require('xss-clean');
