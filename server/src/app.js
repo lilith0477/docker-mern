@@ -45,8 +45,6 @@ app.options('*', cors());
 
 // hook up session for express routes
 app.use(sessionMiddleware);
-// hook up session counter
-app.use(sessionCounter);
 
 // jwt authentication
 app.use(passport.initialize());

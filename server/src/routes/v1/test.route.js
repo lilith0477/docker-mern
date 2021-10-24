@@ -10,20 +10,22 @@ router
     const io = req.app.get('ioClient')
     const apiRef = {
         "Current Session"               : session,
-        // "Main Info"                     : io.engine,
-        "All"                           : io.fetchSockets(),
+        "Main Info"                     : io.engine,
         // "App Wide Socket Count"     : io.engine.clientsCount,
         // "In Particular NameSpace"        : io.of("/").sockets,
 
     }
-    console.log(
-        "\n==============================================\n",
-        await  io.fetchSockets(),
-        "\n==============================================\n",
-    )
-    console.log("TODO: Item:", req.app.get('ioClient').engine.clientsCount)            
+    // console.log(
+    //     "\n==============================================\n",
+    //     req.session,
+    //     "\n==============================================\n",
+    //     io.engine,
+    //     // io.sockets.connected[session.socketio].emit('show', cntr++),
+    //     "\n==============================================\n",
+    // )
+    // console.log("TODO: Item:", req.app.get('ioClient').engine.clientsCount)            
 
-    res.json(apiRef );
+    res.json(session );
 
   });
 module.exports = router;
